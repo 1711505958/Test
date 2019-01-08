@@ -67,7 +67,7 @@ public class ChuKuController {
 		PageHelper.startPage(pn, 5);
 		List<ChuKu> list = chukuService.select();
 		PageInfo pageInfo = new PageInfo(list,5);
-		return Msg.success().add("pageInfo", pageInfo);
+		return null;
 	}
 	
 	@ResponseBody
