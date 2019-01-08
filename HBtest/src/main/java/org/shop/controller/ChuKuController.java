@@ -56,7 +56,7 @@ public class ChuKuController {
 	     if(i==1) {
 	    	 return Msg.success();
 	     }else {
-	    	 return Msg.file();
+	    	 return null;
 	     }
 	}
 	
@@ -67,7 +67,7 @@ public class ChuKuController {
 		PageHelper.startPage(pn, 5);
 		List<ChuKu> list = chukuService.select();
 		PageInfo pageInfo = new PageInfo(list,5);
-		return Msg.success().add("pageInfo", pageInfo);
+		return null;
 	}
 	
 	@ResponseBody
@@ -77,6 +77,6 @@ public class ChuKuController {
 		PageHelper.startPage(1, 5);
 		List<ChuKu> list = chukuService.selectOne(chuku);
 		PageInfo pageInfo = new PageInfo(list,5);
-		return Msg.success().add("pageInfo", pageInfo);
+		return null;
 	}
 }

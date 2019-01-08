@@ -13,7 +13,7 @@
 <style>
      span {
         text-decoration:none;
-        font-size:12px;
+        font-size:17px;
         color:#288bc4;
         padding-left:10px;
     }
