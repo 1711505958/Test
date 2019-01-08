@@ -16,4 +16,6 @@ public interface ChuKuService {
 	public List<ChuKu> selectOne(ChuKu chuku);
 	
 	public int selectByIdKey(ChuKu chuku);
+
+   
 }
