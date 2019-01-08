@@ -62,7 +62,7 @@ public class ChuKuServiceImpl implements ChuKuService{
 	public KuCun selectByName(String shopName) {
 		// TODO Auto-generated method stub
 		KuCun kucun = kucunMapper.selectByName(shopName);
-		return null;
+		return kucun;
 	}
 
 	@Override
