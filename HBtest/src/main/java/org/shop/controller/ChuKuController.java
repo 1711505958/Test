@@ -38,8 +38,7 @@ public class ChuKuController {
 		String shuliang = kucun.getShopShuliang()+"";
 		System.out.println("----------------------->:"+fenlei+"||"+shuliang);
 		Map<String,String> map = new HashMap<String,String>();
-		map.put("fenlei", fenlei);
-		map.put("shuliang", shuliang);
+		
 		return Msg.success().add("map", map);
 	}
 	
