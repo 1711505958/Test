@@ -83,43 +83,7 @@
 		</div>
 		<!-- content end -->
 	</div>
-	 <script type="text/javascript">
-	      
-	      var username = "<%=user.getUsername() %>";
-	      var password = "<%=user.getPassword() %>";
-	      $("#btn").click(function(){
-	    	  /* alert(username);
-	    	  alert(password); */
-	    	  var yuanpass = $("#yuanpass").val();
-	    	  var xinpass = $("#xinpass").val();
-	    	  var quepass = $("#quepass").val();
-	    	//  alert(password);
-	    	//  alert(yuanpass+"||"+xinpass+"||"+quepass);
-	    	  if(yuanpass!=password){
-	    		  alert("原密码错误");
-	    		  return false;
-	    	  }
-	    	  if(xinpass!=quepass){
-	    		  alert("确认密码错误");
-	    		  return false;
-	    	  }
-	    	 /// alert(yuanpass+"||"+xinpass+"||"+quepass);
-	    	  $.ajax({
-	    		  url:"${APP_PATH}/update.do",
-	    		  type:"post",
-	    		  data:"username="+username+"&password="+xinpass,
-	    		  success:function(result){
-	    			  if(result.code==100){
-	    				  alert("修改成功，请重新登陆");
-	    				  parent.window.location.href="${APP_PATH}/tologin.do";
-	    			  }else{
-	    				  alert("修改失败，请联系管理员");
-	    			  }
-	    			//  parent.window.location.href="${APP_PATH}/tologin";
-	    		  }
-	    	  }); 
-	      });
-	 </script>
+	 
 	  <script type="text/javascript">
 	      
 	      var username = "<%=user.getUsername() %>";
