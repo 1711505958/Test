@@ -14,7 +14,10 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-   
+    <link href="${APP_PATH }/bootstrap-dist/js/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="${APP_PATH }/bootstrap-dist/js/moment-with-locales.js"></script>
+    <script src="${APP_PATH }/bootstrap-dist/css/bootstrap-datetimepicker.min.js"></script>
+    <script src="${APP_PATH }/bootstrap-dist/js/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 <body>
 <!-- ------------------按钮绑事件 -->
