@@ -56,7 +56,7 @@ public class ChuKuController {
 	     if(i==1) {
 	    	 return Msg.success();
 	     }else {
-	    	 return Msg.file();
+	    	 return null;
 	     }
 	}
 	
