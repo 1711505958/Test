@@ -17,11 +17,14 @@
 			.headerlitooleulsubitem_gray {
 				background-Color: White;
 				position: absolute;
+				
 				border-left: 1px solid #BCD4E5;
 				border-right: 1px solid #BCD4E5;
+				
 				border-bottom: 1px solid #BCD4E5;
 				box-shadow: 0px 0px 5px #BCD4E5;
 				width: 230px;
+				
 				margin-left: -170px;
 				color: Black;
 				display: none;
@@ -249,10 +252,10 @@
 							<li>预警信息设置</li>
 						</a>
 						<a href="${APP_PATH }/chuku/main.do" target="right">
-							<li>出库管理</li>
+							<li>出库管理。</li>
 						</a>
 						<%-- <a href="${APP_PATH }/user" target="right">
-							<li>用户管理</li>
+							<li>用户管理。</li>
 						</a> --%>
 						<a href="${APP_PATH }/updatePwd.do" target="right"><li >修改密码</li></a>
 					</ul>
