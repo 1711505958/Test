@@ -34,10 +34,10 @@ public class KuCunController {
 	@RequestMapping("/selectAll.do")
 	public Msg selectAll(int pn) {
 		List<YuJin> listYujin = yujinService.selectAll();
-		PageHelper.startPage(pn, 5);
+		PageHelper.startPage(pn, 6);
 		List<KuCun> list = kucunService.selectAll();
 		//System.out.println("---------------------->:"+list.size());
-		PageInfo pageInfo = new PageInfo(list,5);
+		PageInfo pageInfo = new PageInfo(list,6);
 	//	List<YuJin> listYujin = yujinService.selectAll();
 		return Msg.success().add("pageInfo", pageInfo).add("listYujin", listYujin);
 	}
