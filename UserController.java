@@ -1,81 +1,121 @@
-package com.qdu.controller;
+package org.shop.controller;
 
-import com.qdu.pojo.Users;
-import com.qdu.service.ProjectService;
-import com.qdu.service.UsersService;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.shop.pojo.User;
+import org.shop.service.UserService;
+import org.shop.utils.Msg;
+import org.shop.utils.RandomValidateCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    UsersService userService;
-    @Autowired
-    ProjectService projectServcie;
-
-    @RequestMapping(value = "/login",
-            produces = "text/html;charset=utf-8")
-    @ResponseBody
-    public String login(String uAccount, String upwd, String type, HttpSession session,Model m) {
-        if (userService.login(uAccount, upwd).equals("true")) { //åˆ¤æ–­è´¦å·å¯†ç æ˜¯å¦åŒ¹é…
-            Users u = userService.getUserByUAccount(uAccount);
-            if (!(u.getUtype().equals(type))) {                //åˆ¤æ–­è´¦å·ç±»å‹
-                return "è´¦å·ç±»å‹ä¸ç¬¦";
-            }
-            session.removeAttribute("user");
-            session.setAttribute("user", u);
-            
-            if(u.getUtype().equals("æŠ•èµ„è€…")){
-            String msg = "1";
-            return msg;
-            }
-            else{
-            String msg = "2";
-            return msg;
-            }
-        } else {
-            String msg = "è´¦å·æˆ–å¯†ç è¾“å…¥é”™è¯¯";
-
-            return msg;
+	@Autowired
+	UserService userService;
+	
+	@RequestMapping("/tologin.do")
+	public String tologin() {
+		return "login";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/login.do")
+	public Msg login(User user,String yanzen,HttpServletRequest request) {
+		/*System.out.println(user);    OK
+		System.out.println(yanzen);*/
+		Msg msg = new Msg();
+		HttpSession session = request.getSession();
+		String str = (String)session.getAttribute(RandomValidateCode.RANDOMCODEKEY);
+		if(!yanzen.equals(str)) {
+		    
+			return msg.yanZhenFile();
+		}
+		int dept = userService.selectLogin(user);
+		if(dept==1) {
+			session.setAttribute("user", user);
+			return msg.success();
+		}else {
+			
+			return msg.UnPsFile();
+		}
+	}
+	
+	@RequestMapping("/index.do")
+	public String index() {
+		return "index";
+	}
+	
+	@RequestMapping("/top.do")
+	public String top() {
+		return "fenlei/top";
+	}
+	
+	@RequestMapping("/type.do")
+	public String type() {
+		return "type";
+	}
+	
+	@RequestMapping("/updatePwd.do")
+	public String updatePwd() {
+		return "updatePwd";
+	}
+	
+	@RequestMapping("/user.do")
+	public String user() {
+		return "user";
+	}
+	
+	
+	/**
+	 * »ñÈ¡Éú³ÉÑéÖ¤ÂëÏÔÊ¾µ½ UI ½çÃæ
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/checkCode.do")
+	public void checkCode(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+		//ÉèÖÃÏàÓ¦ÀàĞÍ,¸æËßä¯ÀÀÆ÷Êä³öµÄÄÚÈİÎªÍ¼Æ¬
+        response.setContentType("image/jpeg");
+        
+        //ÉèÖÃÏìÓ¦Í·ĞÅÏ¢£¬¸æËßä¯ÀÀÆ÷²»Òª»º´æ´ËÄÚÈİ
+        response.setHeader("pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expire", 0);
+        
+        RandomValidateCode randomValidateCode = new RandomValidateCode();
+        try {
+            randomValidateCode.getRandcode(request, response);//Êä³öÍ¼Æ¬·½·¨
+            HttpSession session = request.getSession();
+            String str = (String)session.getAttribute(RandomValidateCode.RANDOMCODEKEY);
+            System.out.println("--------------------------->:"+str);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }
-
-
-    @RequestMapping(value = "/register",
-            method = RequestMethod.POST,
-            produces = "text/html;charset=utf-8")
-    @ResponseBody
-    public String register(Users u, String rpwd) {
-        if ((u.getUaccount().length() < 6) || (u.getUaccount().length() > 18)) //åˆ¤æ–­è´¦å·é•¿åº¦
-        {
-            return "è´¦å·é•¿åº¦ä¸º6-18ä½";
-        }
-        if ((u.getUpwd().length() < 8) || (u.getUpwd().length() > 16)) //åˆ¤æ–­å¯†ç é•¿åº¦
-        {
-            return "å¯†ç é•¿åº¦ä¸º8-16ä½";
-        }
-        if (!(u.getUpwd().equals(rpwd))) //åˆ¤æ–­å¯†ç é•¿åº¦
-        {
-            return "ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´";
-        }
-        if (userService.addUser(u).equals("fail")) {    // trueä¸ºæ³¨å†ŒæˆåŠŸ failä¸ºå·²å­˜åœ¨æ­¤è´¦å·
-            return "å·²å­˜åœ¨æ­¤è´¦å·";
-        }
-        return "1";//æ³¨å†ŒæˆåŠŸ
-    }
-
-    @RequestMapping(value = "/getAllUser")
-    @ResponseBody
-    public String getAllUser() {
-        return userService.getCount().toString();//æ€»æŠ•èµ„è€…
-
-    }
-
+	}
+	
+	@ResponseBody
+	@RequestMapping("/update.do")
+	public Msg update(String username,String password) {
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		System.out.println("------------------------->:"+user);
+		int dept = userService.update(user);
+		if(dept==1) {
+			return Msg.success();
+		}else {
+			return Msg.file();
+		}
+	}
 }
