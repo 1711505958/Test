@@ -38,7 +38,8 @@ public class ChuKuController {
 		String shuliang = kucun.getShopShuliang()+"";
 		System.out.println("----------------------->:"+fenlei+"||"+shuliang);
 		Map<String,String> map = new HashMap<String,String>();
-		
+		map.put("fenlei", fenlei);
+		map.put("shuliang", shuliang);
 		return Msg.success().add("map", map);
 	}
 	
@@ -55,7 +56,7 @@ public class ChuKuController {
 	     if(i==1) {
 	    	 return Msg.success();
 	     }else {
-	    	 return Msg.file();
+	    	 return null;
 	     }
 	}
 	
@@ -66,7 +67,7 @@ public class ChuKuController {
 		PageHelper.startPage(pn, 5);
 		List<ChuKu> list = chukuService.select();
 		PageInfo pageInfo = new PageInfo(list,5);
-		return Msg.success().add("pageInfo", pageInfo);
+		return null;
 	}
 	
 	@ResponseBody
@@ -76,6 +77,6 @@ public class ChuKuController {
 		PageHelper.startPage(1, 5);
 		List<ChuKu> list = chukuService.selectOne(chuku);
 		PageInfo pageInfo = new PageInfo(list,5);
-		return Msg.success().add("pageInfo", pageInfo);
+		return null;
 	}
 }

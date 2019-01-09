@@ -82,4 +82,6 @@ public class ChuKuServiceImpl implements ChuKuService{
 		// TODO Auto-generated method stub
 		return chukuMapper.selectByIdKey(chuku);
 	}
+	
+
 }

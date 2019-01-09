@@ -42,6 +42,18 @@
 				color: Black;
 				display: none;
 			}
+			.headerlitooleulsubitem_red {
+				background-Color: White;
+				position: absolute;
+				border-left: 1px solid #E5BCD4;
+				border-right: 1px solid #E5BCD4;
+				border-bottom: 1px solid #E5BCD4;
+				box-shadow: 0px 0px 5px #E5BCD4;
+				width: 230px;
+				margin-left: -170px;
+				color: Black;
+				display: none;
+			}
 			
 			.headerlitooleulsubitem_gray>li,
 			.headerlitooleulsubitem_red>li {

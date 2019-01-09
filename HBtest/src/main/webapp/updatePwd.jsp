@@ -83,7 +83,8 @@
 		</div>
 		<!-- content end -->
 	</div>
-	 <script type="text/javascript">
+	 
+	  <script type="text/javascript">
 	      
 	      var username = "<%=user.getUsername() %>";
 	      var password = "<%=user.getPassword() %>";

@@ -97,5 +97,29 @@
         	 });
           }
     </script>
+    <script type="text/javascript">
+          function run(){
+        	 alert($("#form1").serialize());
+        	 $.ajax({
+        		 url:'${APP_PATH}/login.do',
+        		 type:"post",
+        		 data:$("#form1").serialize(),
+        		 success:function(result){
+        			 
+        			 if(result.code==100){
+        				
+        				 alert(result.message);
+        				 window.location.href = "${APP_PATH}/index.do";
+        			 }else if(result.code==200){
+        				 
+        				 alert(result.message);
+        			 }else{
+        				
+        				 alert(result.message);
+        			 }
+        		 }
+        	 });
+          }
+    </script>
 </body>
 </html>

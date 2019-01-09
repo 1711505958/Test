@@ -13,7 +13,7 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-</head>
+
 <body>
 <!-- ------------------按钮绑事件 -->
   <script type="text/javascript">
