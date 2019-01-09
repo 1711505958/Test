@@ -46,9 +46,9 @@ public class KuCunController {
 	@RequestMapping("/selectOne.do")
 	public Msg selectOne(KuCun kucun) {
 		System.out.println("---------------------------->:"+kucun);
-		PageHelper.startPage(1, 5);
+		PageHelper.startPage(1, 6);
 		List<KuCun> list = kucunService.selectOne(kucun);
-		PageInfo pageInfo = new PageInfo(list,5);
+		PageInfo pageInfo = new PageInfo(list,6);
 		return Msg.success().add("pageInfo", pageInfo);
 	}
 	
