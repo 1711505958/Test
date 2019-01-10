@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<hibernate-mapping>
+    <class name="com.niit.entity.UserJourney" table="userJourney" >
+        <composite-id name="id" class="com.niit.entity.UserJourneyId">
+            <key-property name="uid" >
+                <column name="uid" />
+            </key-property>
+            <key-property name="jid" >
+                <column name="jid" />
+            </key-property>
+        </composite-id>
+        <property name="uName" />
+         
+        <property name="jName"/>
+            
+    
+ 
+    </class>
+</hibernate-mapping>

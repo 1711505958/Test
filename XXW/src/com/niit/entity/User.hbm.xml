@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+
+<hibernate-mapping>
+   <!--  name:对应持久化类  table:对应持久化类对应的数据库表 -->
+	<class name="com.niit.entity.User" table="user">
+	    <!-- 当数据库表的字段和持久化类的属性名称相同时，可以省略不写 -->
+	    <!-- id主键的专用 -->
+		<id name="id">
+		 
+			<generator class="native"></generator>
+		</id>
+		<!--除了主键，其他字段均使用property-->
+		<property name="name"/>
+		<property name="password" />
+		<property name="age"/>
+		<property name="gender"/>
+		<property name="phoneNumber"/>
+		<property name="grade" />
+	</class>
+</hibernate-mapping>
